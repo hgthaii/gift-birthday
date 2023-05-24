@@ -1,7 +1,6 @@
 const $ = document.querySelector.bind(document)
 // Ngày muốn đếm ngược đến
-const targetDate = new Date('2023-06-01T00:00:00Z').getTime()
-// const targetDate = new Date("2023-06-01T00:00:00Z").getTime();
+const targetDate = new Date("2023-06-01T00:00:00Z").getTime();
 
 const confettiSettings = { target: 'confetti' }
 const confetti = new window.ConfettiGenerator(confettiSettings)
@@ -12,7 +11,6 @@ const giftbox = $('#merrywrap')
 const canvasC = $('#canvas')
 const main = $('#main')
 const qrcode = $('#qrcode')
-// const cake = $('#cake')
 const second = 0,
     minute = second * 60,
     hour = minute * 60,
@@ -67,7 +65,6 @@ function updateCountdown() {
     // Kiểm tra nếu đã đến ngày đích đến, dừng đồng hồ đếm ngược
     if (timeRemaining <= 0) {
         clearInterval(countdown)
-        // cake.style.display = 'none'
 
         x = setInterval(function () {
             let w = (canvasC.width = window.innerWidth),
@@ -525,10 +522,6 @@ function updateCountdown() {
                     return
                 }
                 setTimeout(openBox, stepMinutes[step - 1])
-                // setTimeout(() => {
-                //     $('#main').innerHTML = ''
-                //     // canvasC.style.display = 'none'
-                // }, 20000);
                 step++
             }
 
@@ -545,7 +538,6 @@ function updateCountdown() {
             // }
         }, second)
     } else {
-        // cake.style.display = 'none'
         requestAnimationFrame(updateCountdown)
     }
 }
