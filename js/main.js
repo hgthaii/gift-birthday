@@ -501,7 +501,7 @@ function updateCountdown() {
             }
 
             function QRcode() {
-                $('#qrcode').innerHTML = `<img class='qrcode' src='../img/qrcode.jpg' alt='qrcode'/>`
+                $('#qrcode').innerHTML = `<img class='qrcode' src='./qrcode.jpg' alt='qrcode'/>`
             }
 
             function stepClass(step) {
