@@ -1,81 +1,82 @@
-const $ = document.querySelector.bind(document);
+const $ = document.querySelector.bind(document)
 // Ngày muốn đếm ngược đến
-const targetDate = new Date("2023-05-24T07:04:00Z").getTime();
+const targetDate = new Date('2023-05-24T00:00:00Z').getTime()
 // const targetDate = new Date("2023-06-01T00:00:00Z").getTime();
 
-const confettiSettings = { target: "confetti" };
-const confetti = new window.ConfettiGenerator(confettiSettings);
-confetti.render();
+const confettiSettings = { target: 'confetti' }
+const confetti = new window.ConfettiGenerator(confettiSettings)
+confetti.render()
 
-let countdown; // Biến đếm ngược
-
-const giftbox = $("#merrywrap");
-const canvasC = $("#canvas");
+let countdown // Biến đếm ngược
+const giftbox = $('#merrywrap')
+const canvasC = $('#canvas')
+const main = $('#main')
+const qrcode = $('#qrcode')
 // const cake = $('#cake')
 const second = 0,
     minute = second * 60,
     hour = minute * 60,
-    day = hour * 24;
+    day = hour * 24
 
 const config = {
-    birthdate: "Jan 29, 2020",
-    name: "Mẫn Mẫn",
-};
-
-function hideEverything() {
-    giftbox.style.display = "none";
-    canvasC.style.display = "none";
+    birthdate: 'Jan 29, 2020',
+    name: 'Mẫn Mẫn',
 }
 
-hideEverything();
+function hideEverything() {
+    giftbox.style.display = 'none'
+    canvasC.style.display = 'none'
+    main.style.display = 'none'
+    qrcode.style.display = 'none'
+}
 
+hideEverything()
 
 // Hàm cập nhật đồng hồ đếm ngược
 function updateCountdown() {
     // Thời gian hiện tại
-    const currentDate = new Date().getTime();
+    const currentDate = new Date().getTime()
 
     // Tính thời gian còn lại
-    const timeRemaining = targetDate - currentDate;
+    const timeRemaining = targetDate - currentDate
 
     // Tính giờ, phút, giây còn lại
-    var days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+    var days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24))
+    var hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+    var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60))
+    var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000)
 
     if (days < 10) {
-        days = "0" + days;
+        days = '0' + days
     }
     if (hours < 10) {
-        hours = "0" + hours;
+        hours = '0' + hours
     }
     if (minutes < 10) {
-        minutes = "0" + minutes;
+        minutes = '0' + minutes
     }
     if (seconds < 10) {
-        seconds = "0" + seconds;
+        seconds = '0' + seconds
     }
 
-    $("#days").innerHTML = days + "<span>Ngày</span>";
-    $("#hours").innerHTML = hours + "<span>Giờ</span>";
-    $("#minutes").innerHTML = minutes + "<span>Phút</span>";
-    $("#seconds").innerHTML = seconds + "<span>Giây</span>";
-    
+    $('#days').innerHTML = days + '<span>Ngày</span>'
+    $('#hours').innerHTML = hours + '<span>Giờ</span>'
+    $('#minutes').innerHTML = minutes + '<span>Phút</span>'
+    $('#seconds').innerHTML = seconds + '<span>Giây</span>'
 
     // Kiểm tra nếu đã đến ngày đích đến, dừng đồng hồ đếm ngược
     if (timeRemaining <= 0) {
-        clearInterval(countdown);
+        clearInterval(countdown)
         // cake.style.display = 'none'
-            
+
         x = setInterval(function () {
             let w = (canvasC.width = window.innerWidth),
                 h = (canvasC.height = window.innerHeight),
-                ctx = canvasC.getContext("2d"),
+                ctx = canvasC.getContext('2d'),
                 hw = w / 2, // half-width
                 hh = h / 2,
                 opts = {
-                    strings: ["HAPPY", "BIRTHDAY!", config.name],
+                    strings: ['HAPPY', 'BIRTHDAY!', config.name],
                     charSize: 30,
                     charSpacing: 35,
                     lineHeight: 40,
@@ -120,298 +121,295 @@ function updateCountdown() {
                 },
                 Tau = Math.PI * 2,
                 TauQuarter = Tau / 4,
-                letters = [];
+                letters = []
 
-            ctx.font = opts.charSize + "px Verdana";
+            ctx.font = opts.charSize + 'px Verdana'
 
             function Letter(char, x, y) {
-                this.char = char;
-                this.x = x;
-                this.y = y;
+                this.char = char
+                this.x = x
+                this.y = y
 
-                this.dx = -ctx.measureText(char).width / 2;
-                this.dy = +opts.charSize / 2;
+                this.dx = -ctx.measureText(char).width / 2
+                this.dy = +opts.charSize / 2
 
-                this.fireworkDy = this.y - hh;
+                this.fireworkDy = this.y - hh
 
-                let hue = (x / calc.totalWidth) * 360;
+                let hue = (x / calc.totalWidth) * 360
 
-                this.color = "hsl(hue,80%,50%)".replace("hue", hue);
-                this.lightAlphaColor = "hsla(hue,80%,light%,alp)".replace("hue", hue);
-                this.lightColor = "hsl(hue,80%,light%)".replace("hue", hue);
-                this.alphaColor = "hsla(hue,80%,50%,alp)".replace("hue", hue);
+                this.color = 'hsl(hue,80%,50%)'.replace('hue', hue)
+                this.lightAlphaColor = 'hsla(hue,80%,light%,alp)'.replace('hue', hue)
+                this.lightColor = 'hsl(hue,80%,light%)'.replace('hue', hue)
+                this.alphaColor = 'hsla(hue,80%,50%,alp)'.replace('hue', hue)
 
-                this.reset();
+                this.reset()
             }
             Letter.prototype.reset = function () {
-                this.phase = "firework";
-                this.tick = 0;
-                this.spawned = false;
-                this.spawningTime = (opts.fireworkSpawnTime * Math.random()) | 0;
-                this.reachTime = (opts.fireworkBaseReachTime + opts.fireworkAddedReachTime * Math.random()) | 0;
-                this.lineWidth = opts.fireworkBaseLineWidth + opts.fireworkAddedLineWidth * Math.random();
-                this.prevPoints = [[0, hh, 0]];
-            };
+                this.phase = 'firework'
+                this.tick = 0
+                this.spawned = false
+                this.spawningTime = (opts.fireworkSpawnTime * Math.random()) | 0
+                this.reachTime = (opts.fireworkBaseReachTime + opts.fireworkAddedReachTime * Math.random()) | 0
+                this.lineWidth = opts.fireworkBaseLineWidth + opts.fireworkAddedLineWidth * Math.random()
+                this.prevPoints = [[0, hh, 0]]
+            }
             Letter.prototype.step = function () {
-                if (this.phase === "firework") {
+                if (this.phase === 'firework') {
                     if (!this.spawned) {
-                        ++this.tick;
+                        ++this.tick
                         if (this.tick >= this.spawningTime) {
-                            this.tick = 0;
-                            this.spawned = true;
+                            this.tick = 0
+                            this.spawned = true
                         }
                     } else {
-                        ++this.tick;
+                        ++this.tick
 
                         let linearProportion = this.tick / this.reachTime,
                             armonicProportion = Math.sin(linearProportion * TauQuarter),
                             x = linearProportion * this.x,
-                            y = hh + armonicProportion * this.fireworkDy;
+                            y = hh + armonicProportion * this.fireworkDy
 
-                        if (this.prevPoints.length > opts.fireworkPrevPoints) this.prevPoints.shift();
+                        if (this.prevPoints.length > opts.fireworkPrevPoints) this.prevPoints.shift()
 
-                        this.prevPoints.push([x, y, linearProportion * this.lineWidth]);
+                        this.prevPoints.push([x, y, linearProportion * this.lineWidth])
 
-                        let lineWidthProportion = 1 / (this.prevPoints.length - 1);
+                        let lineWidthProportion = 1 / (this.prevPoints.length - 1)
 
                         for (let i = 1; i < this.prevPoints.length; ++i) {
                             let point = this.prevPoints[i],
-                                point2 = this.prevPoints[i - 1];
+                                point2 = this.prevPoints[i - 1]
 
-                            ctx.strokeStyle = this.alphaColor.replace("alp", i / this.prevPoints.length);
-                            ctx.lineWidth = point[2] * lineWidthProportion * i;
-                            ctx.beginPath();
-                            ctx.moveTo(point[0], point[1]);
-                            ctx.lineTo(point2[0], point2[1]);
-                            ctx.stroke();
+                            ctx.strokeStyle = this.alphaColor.replace('alp', i / this.prevPoints.length)
+                            ctx.lineWidth = point[2] * lineWidthProportion * i
+                            ctx.beginPath()
+                            ctx.moveTo(point[0], point[1])
+                            ctx.lineTo(point2[0], point2[1])
+                            ctx.stroke()
                         }
 
                         if (this.tick >= this.reachTime) {
-                            this.phase = "contemplate";
+                            this.phase = 'contemplate'
 
                             this.circleFinalSize =
-                                opts.fireworkCircleBaseSize + opts.fireworkCircleAddedSize * Math.random();
+                                opts.fireworkCircleBaseSize + opts.fireworkCircleAddedSize * Math.random()
                             this.circleCompleteTime =
-                                (opts.fireworkCircleBaseTime + opts.fireworkCircleAddedTime * Math.random()) | 0;
-                            this.circleCreating = true;
-                            this.circleFading = false;
+                                (opts.fireworkCircleBaseTime + opts.fireworkCircleAddedTime * Math.random()) | 0
+                            this.circleCreating = true
+                            this.circleFading = false
 
                             this.circleFadeTime =
-                                (opts.fireworkCircleFadeBaseTime +
-                                    opts.fireworkCircleFadeAddedTime * Math.random()) |
-                                0;
-                            this.tick = 0;
-                            this.tick2 = 0;
+                                (opts.fireworkCircleFadeBaseTime + opts.fireworkCircleFadeAddedTime * Math.random()) | 0
+                            this.tick = 0
+                            this.tick2 = 0
 
-                            this.shards = [];
+                            this.shards = []
 
-                            let shardCount =
-                                    (opts.fireworkBaseShards + opts.fireworkAddedShards * Math.random()) | 0,
+                            let shardCount = (opts.fireworkBaseShards + opts.fireworkAddedShards * Math.random()) | 0,
                                 angle = Tau / shardCount,
                                 cos = Math.cos(angle),
                                 sin = Math.sin(angle),
                                 x = 1,
-                                y = 0;
+                                y = 0
 
                             for (let i = 0; i < shardCount; ++i) {
-                                let x1 = x;
-                                x = x * cos - y * sin;
-                                y = y * cos + x1 * sin;
+                                let x1 = x
+                                x = x * cos - y * sin
+                                y = y * cos + x1 * sin
 
-                                this.shards.push(new Shard(this.x, this.y, x, y, this.alphaColor));
+                                this.shards.push(new Shard(this.x, this.y, x, y, this.alphaColor))
                             }
                         }
                     }
-                } else if (this.phase === "contemplate") {
-                    ++this.tick;
+                } else if (this.phase === 'contemplate') {
+                    ++this.tick
 
                     if (this.circleCreating) {
-                        ++this.tick2;
+                        ++this.tick2
                         let proportion = this.tick2 / this.circleCompleteTime,
-                            armonic = -Math.cos(proportion * Math.PI) / 2 + 0.5;
+                            armonic = -Math.cos(proportion * Math.PI) / 2 + 0.5
 
-                        ctx.beginPath();
+                        ctx.beginPath()
                         ctx.fillStyle = this.lightAlphaColor
-                            .replace("light", 50 + 50 * proportion)
-                            .replace("alp", proportion);
-                        ctx.beginPath();
-                        ctx.arc(this.x, this.y, armonic * this.circleFinalSize, 0, Tau);
-                        ctx.fill();
+                            .replace('light', 50 + 50 * proportion)
+                            .replace('alp', proportion)
+                        ctx.beginPath()
+                        ctx.arc(this.x, this.y, armonic * this.circleFinalSize, 0, Tau)
+                        ctx.fill()
 
                         if (this.tick2 > this.circleCompleteTime) {
-                            this.tick2 = 0;
-                            this.circleCreating = false;
-                            this.circleFading = true;
+                            this.tick2 = 0
+                            this.circleCreating = false
+                            this.circleFading = true
                         }
                     } else if (this.circleFading) {
-                        ctx.fillStyle = this.lightColor.replace("light", 70);
-                        ctx.fillText(this.char, this.x + this.dx, this.y + this.dy);
+                        ctx.fillStyle = this.lightColor.replace('light', 70)
+                        ctx.fillText(this.char, this.x + this.dx, this.y + this.dy)
 
-                        ++this.tick2;
+                        ++this.tick2
                         let proportion = this.tick2 / this.circleFadeTime,
-                            armonic = -Math.cos(proportion * Math.PI) / 2 + 0.5;
+                            armonic = -Math.cos(proportion * Math.PI) / 2 + 0.5
 
-                        ctx.beginPath();
-                        ctx.fillStyle = this.lightAlphaColor.replace("light", 100).replace("alp", 1 - armonic);
-                        ctx.arc(this.x, this.y, this.circleFinalSize, 0, Tau);
-                        ctx.fill();
+                        ctx.beginPath()
+                        ctx.fillStyle = this.lightAlphaColor.replace('light', 100).replace('alp', 1 - armonic)
+                        ctx.arc(this.x, this.y, this.circleFinalSize, 0, Tau)
+                        ctx.fill()
 
-                        if (this.tick2 >= this.circleFadeTime) this.circleFading = false;
+                        if (this.tick2 >= this.circleFadeTime) this.circleFading = false
                     } else {
-                        ctx.fillStyle = this.lightColor.replace("light", 70);
-                        ctx.fillText(this.char, this.x + this.dx, this.y + this.dy);
+                        ctx.fillStyle = this.lightColor.replace('light', 70)
+                        ctx.fillText(this.char, this.x + this.dx, this.y + this.dy)
                     }
 
                     for (let i = 0; i < this.shards.length; ++i) {
-                        this.shards[i].step();
+                        this.shards[i].step()
 
                         if (!this.shards[i].alive) {
-                            this.shards.splice(i, 1);
-                            --i;
+                            this.shards.splice(i, 1)
+                            --i
                         }
                     }
 
                     if (this.tick > opts.letterContemplatingWaitTime) {
-                        this.phase = "balloon";
+                        this.phase = 'balloon'
 
-                        this.tick = 0;
-                        this.spawning = true;
-                        this.spawnTime = (opts.balloonSpawnTime * Math.random()) | 0;
-                        this.inflating = false;
+                        this.tick = 0
+                        this.spawning = true
+                        this.spawnTime = (opts.balloonSpawnTime * Math.random()) | 0
+                        this.inflating = false
                         this.inflateTime =
-                            (opts.balloonBaseInflateTime + opts.balloonAddedInflateTime * Math.random()) | 0;
-                        this.size = (opts.balloonBaseSize + opts.balloonAddedSize * Math.random()) | 0;
+                            (opts.balloonBaseInflateTime + opts.balloonAddedInflateTime * Math.random()) | 0
+                        this.size = (opts.balloonBaseSize + opts.balloonAddedSize * Math.random()) | 0
 
                         let rad = opts.balloonBaseRadian + opts.balloonAddedRadian * Math.random(),
-                            vel = opts.balloonBaseVel + opts.balloonAddedVel * Math.random();
+                            vel = opts.balloonBaseVel + opts.balloonAddedVel * Math.random()
 
-                        this.vx = Math.cos(rad) * vel;
-                        this.vy = Math.sin(rad) * vel;
+                        this.vx = Math.cos(rad) * vel
+                        this.vy = Math.sin(rad) * vel
                     }
-                } else if (this.phase === "balloon") {
-                    ctx.strokeStyle = this.lightColor.replace("light", 80);
+                } else if (this.phase === 'balloon') {
+                    ctx.strokeStyle = this.lightColor.replace('light', 80)
 
                     if (this.spawning) {
-                        ++this.tick;
-                        ctx.fillStyle = this.lightColor.replace("light", 70);
-                        ctx.fillText(this.char, this.x + this.dx, this.y + this.dy);
+                        ++this.tick
+                        ctx.fillStyle = this.lightColor.replace('light', 70)
+                        ctx.fillText(this.char, this.x + this.dx, this.y + this.dy)
 
                         if (this.tick >= this.spawnTime) {
-                            this.tick = 0;
-                            this.spawning = false;
-                            this.inflating = true;
+                            this.tick = 0
+                            this.spawning = false
+                            this.inflating = true
                         }
                     } else if (this.inflating) {
-                        ++this.tick;
+                        ++this.tick
 
                         let proportion = this.tick / this.inflateTime,
                             x = (this.cx = this.x),
-                            y = (this.cy = this.y - this.size * proportion);
+                            y = (this.cy = this.y - this.size * proportion)
 
-                        ctx.fillStyle = this.alphaColor.replace("alp", proportion);
-                        ctx.beginPath();
-                        generateBalloonPath(x, y, this.size * proportion);
-                        ctx.fill();
+                        ctx.fillStyle = this.alphaColor.replace('alp', proportion)
+                        ctx.beginPath()
+                        generateBalloonPath(x, y, this.size * proportion)
+                        ctx.fill()
 
-                        ctx.beginPath();
-                        ctx.moveTo(x, y);
-                        ctx.lineTo(x, this.y);
-                        ctx.stroke();
+                        ctx.beginPath()
+                        ctx.moveTo(x, y)
+                        ctx.lineTo(x, this.y)
+                        ctx.stroke()
 
-                        ctx.fillStyle = this.lightColor.replace("light", 70);
-                        ctx.fillText(this.char, this.x + this.dx, this.y + this.dy);
+                        ctx.fillStyle = this.lightColor.replace('light', 70)
+                        ctx.fillText(this.char, this.x + this.dx, this.y + this.dy)
 
                         if (this.tick >= this.inflateTime) {
-                            this.tick = 0;
-                            this.inflating = false;
+                            this.tick = 0
+                            this.inflating = false
                         }
                     } else {
-                        this.cx += this.vx;
-                        this.cy += this.vy += opts.upFlow;
+                        this.cx += this.vx
+                        this.cy += this.vy += opts.upFlow
 
-                        ctx.fillStyle = this.color;
-                        ctx.beginPath();
-                        generateBalloonPath(this.cx, this.cy, this.size);
-                        ctx.fill();
+                        ctx.fillStyle = this.color
+                        ctx.beginPath()
+                        generateBalloonPath(this.cx, this.cy, this.size)
+                        ctx.fill()
 
-                        ctx.beginPath();
-                        ctx.moveTo(this.cx, this.cy);
-                        ctx.lineTo(this.cx, this.cy + this.size);
-                        ctx.stroke();
+                        ctx.beginPath()
+                        ctx.moveTo(this.cx, this.cy)
+                        ctx.lineTo(this.cx, this.cy + this.size)
+                        ctx.stroke()
 
-                        ctx.fillStyle = this.lightColor.replace("light", 70);
-                        ctx.fillText(this.char, this.cx + this.dx, this.cy + this.dy + this.size);
+                        ctx.fillStyle = this.lightColor.replace('light', 70)
+                        ctx.fillText(this.char, this.cx + this.dx, this.cy + this.dy + this.size)
 
-                        if (this.cy + this.size < -hh || this.cx < -hw || this.cy > hw) this.phase = "done";
+                        if (this.cy + this.size < -hh || this.cx < -hw || this.cy > hw) this.phase = 'done'
                     }
                 }
-            };
+            }
 
             function Shard(x, y, vx, vy, color) {
-                let vel = opts.fireworkShardBaseVel + opts.fireworkShardAddedVel * Math.random();
+                let vel = opts.fireworkShardBaseVel + opts.fireworkShardAddedVel * Math.random()
 
-                this.vx = vx * vel;
-                this.vy = vy * vel;
+                this.vx = vx * vel
+                this.vy = vy * vel
 
-                this.x = x;
-                this.y = y;
+                this.x = x
+                this.y = y
 
-                this.prevPoints = [[x, y]];
-                this.color = color;
+                this.prevPoints = [[x, y]]
+                this.color = color
 
-                this.alive = true;
+                this.alive = true
 
-                this.size = opts.fireworkShardBaseSize + opts.fireworkShardAddedSize * Math.random();
+                this.size = opts.fireworkShardBaseSize + opts.fireworkShardAddedSize * Math.random()
             }
             Shard.prototype.step = function () {
-                this.x += this.vx;
-                this.y += this.vy += opts.gravity;
+                this.x += this.vx
+                this.y += this.vy += opts.gravity
 
-                if (this.prevPoints.length > opts.fireworkShardPrevPoints) this.prevPoints.shift();
+                if (this.prevPoints.length > opts.fireworkShardPrevPoints) this.prevPoints.shift()
 
-                this.prevPoints.push([this.x, this.y]);
+                this.prevPoints.push([this.x, this.y])
 
-                let lineWidthProportion = this.size / this.prevPoints.length;
+                let lineWidthProportion = this.size / this.prevPoints.length
 
                 for (let k = 0; k < this.prevPoints.length - 1; ++k) {
                     let point = this.prevPoints[k],
-                        point2 = this.prevPoints[k + 1];
+                        point2 = this.prevPoints[k + 1]
 
-                    ctx.strokeStyle = this.color.replace("alp", k / this.prevPoints.length);
-                    ctx.lineWidth = k * lineWidthProportion;
-                    ctx.beginPath();
-                    ctx.moveTo(point[0], point[1]);
-                    ctx.lineTo(point2[0], point2[1]);
-                    ctx.stroke();
+                    ctx.strokeStyle = this.color.replace('alp', k / this.prevPoints.length)
+                    ctx.lineWidth = k * lineWidthProportion
+                    ctx.beginPath()
+                    ctx.moveTo(point[0], point[1])
+                    ctx.lineTo(point2[0], point2[1])
+                    ctx.stroke()
                 }
 
-                if (this.prevPoints[0][1] > hh) this.alive = false;
-            };
+                if (this.prevPoints[0][1] > hh) this.alive = false
+            }
 
             function generateBalloonPath(x, y, size) {
-                ctx.moveTo(x, y);
-                ctx.bezierCurveTo(x - size / 2, y - size / 2, x - size / 4, y - size, x, y - size);
-                ctx.bezierCurveTo(x + size / 4, y - size, x + size / 2, y - size / 2, x, y);
+                ctx.moveTo(x, y)
+                ctx.bezierCurveTo(x - size / 2, y - size / 2, x - size / 4, y - size, x, y - size)
+                ctx.bezierCurveTo(x + size / 4, y - size, x + size / 2, y - size / 2, x, y)
             }
 
             function anim() {
-                window.requestAnimationFrame(anim);
+                window.requestAnimationFrame(anim)
 
-                ctx.fillStyle = "#000";
+                ctx.fillStyle = '#000'
 
-                ctx.fillRect(0, 0, w, h);
+                ctx.fillRect(0, 0, w, h)
 
-                ctx.translate(hw, hh);
+                ctx.translate(hw, hh)
 
-                let done = true;
+                let done = true
                 for (let l = 0; l < letters.length; ++l) {
-                    letters[l].step();
-                    if (letters[l].phase !== "done") done = false;
+                    letters[l].step()
+                    if (letters[l].phase !== 'done') done = false
                 }
 
-                ctx.translate(-hw, -hh);
+                ctx.translate(-hw, -hh)
 
-                if (done) for (let l = 0; l < letters.length; ++l) letters[l].reset();
+                if (done) for (let l = 0; l < letters.length; ++l) letters[l].reset()
             }
 
             for (let i = 0; i < opts.strings.length; ++i) {
@@ -419,36 +417,36 @@ function updateCountdown() {
                     letters.push(
                         new Letter(
                             opts.strings[i][j],
-                            j * opts.charSpacing +
-                                opts.charSpacing / 2 -
-                                (opts.strings[i].length * opts.charSize) / 2,
+                            j * opts.charSpacing + opts.charSpacing / 2 - (opts.strings[i].length * opts.charSize) / 2,
                             i * opts.lineHeight + opts.lineHeight / 2 - (opts.strings.length * opts.lineHeight) / 2,
                         ),
-                    );
+                    )
                 }
             }
 
-            window.addEventListener("resize", function () {
-                w = canvasC.width = window.innerWidth;
-                h = canvasC.height = window.innerHeight;
+            window.addEventListener('resize', function () {
+                w = canvasC.width = window.innerWidth
+                h = canvasC.height = window.innerHeight
 
-                hw = w / 2;
-                hh = h / 2;
+                hw = w / 2
+                hh = h / 2
 
-                ctx.font = opts.charSize + "px Verdana";
-            });
+                ctx.font = opts.charSize + 'px Verdana'
+            })
 
-            giftbox.style.display = "initial";
-            clearInterval(x);
-            let merrywrap = document.getElementById("merrywrap");
-            let box = merrywrap.getElementsByClassName("giftbox")[0];
-            let step = 1;
-            let stepMinutes = [2000, 2000, 1000, 1000];
+            giftbox.style.display = 'initial'
+            main.style.display = 'initial'
+            qrcode.style.display = 'initial'
+            clearInterval(x)
+            let merrywrap = document.getElementById('merrywrap')
+            let box = merrywrap.getElementsByClassName('giftbox')[0]
+            let step = 1
+            let stepMinutes = [2000, 2000, 1000, 1000]
 
             function init() {
-                box.addEventListener("click", openBox, false);
+                box.addEventListener('click', openBox, false)
                 box.addEventListener('click', createCake, false)
-                box.addEventListener("click", showfireworks, false);
+                box.addEventListener('click', showfireworks, false)
             }
 
             function createCake() {
@@ -499,68 +497,70 @@ function updateCountdown() {
             <path fill="#fefae9" d="M10 475.571h180v4H10z" />
         </svg>
     </div>`
+                $('.cake_and_velas').addEventListener('dblclick', QRcode, false)
+            }
+
+            function QRcode() {
+                $('#qrcode').innerHTML = `<img class='qrcode' src='../img/qrcode.jpg' alt='qrcode'/>`
             }
 
             function stepClass(step) {
-                merrywrap.className = "merrywrap";
-                merrywrap.className = "merrywrap step-" + step;
+                merrywrap.className = 'merrywrap'
+                merrywrap.className = 'merrywrap step-' + step
             }
 
             function openBox() {
                 if (step === 1) {
                     setTimeout(createCake(), 10000)
-                    box.removeEventListener("click", openBox, false);
+                    box.removeEventListener('click', openBox, false)
                     box.removeEventListener('click', createCake, false)
-                    
+                    box.removeEventListener('dblclick', QRcode, false)
                 }
-                stepClass(step);
-                
+                stepClass(step)
 
                 if (step === 3) {
+                    box.removeEventListener('click', showfireworks, false)
                 }
                 if (step === 4) {
-                    box.removeEventListener('click', showfireworks, false)
-                    
-                    return;
+                    return
                 }
-                setTimeout(openBox, stepMinutes[step - 1]);
+                setTimeout(openBox, stepMinutes[step - 1])
                 // setTimeout(() => {
                 //     $('#main').innerHTML = ''
                 //     // canvasC.style.display = 'none'
                 // }, 20000);
-                step++;
-                    
+                step++
             }
 
             function showfireworks() {
-                canvasC.style.display = "initial";
-                setTimeout(anim, 1500);
+                canvasC.style.display = 'initial'
+                setTimeout(anim, 1500)
             }
-            
-            init();
+
+            init()
 
             // if (distance < 0) {
             //     clearInterval(x);
             //     console.log("happy birthday");
             // }
-        }, second);
+        }, second)
     } else {
         // cake.style.display = 'none'
-        requestAnimationFrame(updateCountdown);
+        requestAnimationFrame(updateCountdown)
     }
 }
 
 // Bắt đầu đồng hồ đếm ngược
-countdown = setInterval(updateCountdown, 1000);
+countdown = setInterval(updateCountdown, 1000)
 
 // Xoá nội dung của countdown khi chạy xong
 function clearCountdownContent() {
-  $("#timer").style.display = 'none'
-  $("#days").innerHTML = "";
-  $("#hours").innerHTML = "";
-  $("#minutes").innerHTML = "";
-  $("#seconds").innerHTML = "";
+    $('#timer').style.display = 'none'
+    $('#days').innerHTML = ''
+    $('#hours').innerHTML = ''
+    $('#minutes').innerHTML = ''
+    $('#seconds').innerHTML = ''
 }
 
 // Gọi hàm clearCountdownContent sau khi countdown kết thúc
-setTimeout(clearCountdownContent, targetDate - Date.now());
+setTimeout(clearCountdownContent, targetDate - Date.now())
