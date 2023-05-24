@@ -1,6 +1,6 @@
 const $ = document.querySelector.bind(document)
 // Ngày muốn đếm ngược đến
-const targetDate = new Date('2023-05-24T00:00:00Z').getTime()
+const targetDate = new Date('2023-06-01T00:00:00Z').getTime()
 // const targetDate = new Date("2023-06-01T00:00:00Z").getTime();
 
 const confettiSettings = { target: 'confetti' }
