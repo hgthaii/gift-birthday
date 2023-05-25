@@ -77,6 +77,11 @@ span {
     bottom: 0;
     z-index: 10;
 }
+
+.hidden {
+    visibility: hidden;
+}
+
 .giftbox > div {
     background: #f64747;
     position: absolute;

@@ -1,26 +1,12 @@
 const $ = document.querySelector.bind(document)
 // Ngày muốn đếm ngược đến
-// const targetDate = new Date('2023-05-25T03:23:00Z').getTime() // 1/6
+// const targetDate = new Date('2023-05-25T04:00:00Z').getTime() // 1/6
 const targetDate = new Date('2023-05-31T17:00:00Z').getTime() // 1/6
 
-const confettiSettings = { target: 'confetti' }
-const confetti = new window.ConfettiGenerator(confettiSettings)
-confetti.render()
-
-let countdown // Biến đếm ngược
 const giftbox = $('#merrywrap')
 const canvasC = $('#canvas')
 const main = $('#main')
 const qrcode = $('#qrcode')
-const second = 0,
-    minute = second * 60,
-    hour = minute * 60,
-    day = hour * 24
-
-const config = {
-    birthdate: 'June 01, 2023',
-    name: 'Mẫn Mẫn',
-}
 
 function hideEverything() {
     giftbox.style.display = 'none'
@@ -30,6 +16,22 @@ function hideEverything() {
 }
 
 hideEverything()
+
+const confettiSettings = { target: 'confetti' }
+const confetti = new window.ConfettiGenerator(confettiSettings)
+confetti.render()
+
+let countdown // Biến đếm ngược
+
+const second = 0,
+    minute = second * 60,
+    hour = minute * 60,
+    day = hour * 24
+
+const config = {
+    birthdate: 'June 01, 2023',
+    name: 'Mẫn Mẫn',
+}
 
 // Hàm cập nhật đồng hồ đếm ngược
 function updateCountdown() {
@@ -427,7 +429,7 @@ function updateCountdown() {
 
                 ctx.font = opts.charSize + 'px Verdana'
             })
-
+            giftbox.classList.remove('hidden')
             giftbox.style.display = 'initial'
             main.style.display = 'initial'
             qrcode.style.display = 'initial'
