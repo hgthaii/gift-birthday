@@ -1,5 +1,6 @@
 const $ = document.querySelector.bind(document)
 // Ngày muốn đếm ngược đến
+// const targetDate = new Date('2023-05-25T03:23:00Z').getTime() // 1/6
 const targetDate = new Date('2023-05-31T17:00:00Z').getTime() // 1/6
 
 const confettiSettings = { target: 'confetti' }
@@ -53,7 +54,6 @@ function updateCountdown() {
     minutes = padZero(minutes)
     seconds = padZero(seconds)
 
-
     $('#days').innerHTML = days + '<span>Ngày</span>'
     $('#hours').innerHTML = hours + '<span>Giờ</span>'
     $('#minutes').innerHTML = minutes + '<span>Phút</span>'
@@ -63,7 +63,7 @@ function updateCountdown() {
     if (timeRemaining <= 0) {
         clearInterval(countdown)
 
-        x = setInterval(function() {
+        x = setInterval(function () {
             let w = (canvasC.width = window.innerWidth),
                 h = (canvasC.height = window.innerHeight),
                 ctx = canvasC.getContext('2d'),
@@ -492,14 +492,18 @@ function updateCountdown() {
         </svg>
     </div>`
                 let clickCount = 0
-                $('.cake_and_velas').addEventListener('click', () => {
-                    clickCount++
-                    if (clickCount === 6) { 
-                        QRcode()
+                $('.cake_and_velas').addEventListener(
+                    'click',
+                    () => {
+                        clickCount++
+                        if (clickCount === 6) {
+                            QRcode()
 
-                        clickCount === 0
-                     }
-                }, false)
+                            clickCount === 0
+                        }
+                    },
+                    false,
+                )
             }
 
             function QRcode() {

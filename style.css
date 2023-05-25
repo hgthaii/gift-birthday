@@ -41,7 +41,6 @@ body {
     color: #962fbf;
 }
 
-
 #timer {
     line-height: 1;
     font-size: 40px;
@@ -357,19 +356,25 @@ span {
     height: 80px;
 }
 
-
 @media (min-width: 1024px) {
-  #timer {
-    line-height: 1;
-    font-size: 40px;
-    text-align: center;
-    transform: translateY(50%);
-    left: -50%;
-}
+    #timer {
+        line-height: 1;
+        font-size: 40px;
+        text-align: center;
+        transform: translateY(50%);
+        left: -50%;
+    }
 }
 
 /* Responsive styles for mobile devices */
-@media (max-width: 480px) {
+@media (max-width: 600px) {
+    .cake_and_velas {
+        position: absolute;
+        bottom: 20%;
+        left: 16px;
+        right: 0;
+        overflow: hidden;
+    }
     #days {
         font-size: 160px;
         color: #00b159;
@@ -409,7 +414,7 @@ span {
 
     span {
         display: block;
-        font-size: 40px;
+        font-size: 30px;
         color: #000;
         position: relative;
     }
