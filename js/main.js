@@ -1,6 +1,6 @@
 const $ = document.querySelector.bind(document)
 // Ngày muốn đếm ngược đến
-const targetDate = new Date("2023-06-01T00:00:00Z").getTime();
+const targetDate = new Date('2023-05-31T17:00:00Z').getTime() // 1/6
 
 const confettiSettings = { target: 'confetti' }
 const confetti = new window.ConfettiGenerator(confettiSettings)
@@ -17,7 +17,7 @@ const second = 0,
     day = hour * 24
 
 const config = {
-    birthdate: 'Jan 29, 2020',
+    birthdate: 'June 01, 2023',
     name: 'Mẫn Mẫn',
 }
 
@@ -44,18 +44,15 @@ function updateCountdown() {
     var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60))
     var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000)
 
-    if (days < 10) {
-        days = '0' + days
+    function padZero(value) {
+        return value < 10 ? '0' + value : value
     }
-    if (hours < 10) {
-        hours = '0' + hours
-    }
-    if (minutes < 10) {
-        minutes = '0' + minutes
-    }
-    if (seconds < 10) {
-        seconds = '0' + seconds
-    }
+
+    days = padZero(days)
+    hours = padZero(hours)
+    minutes = padZero(minutes)
+    seconds = padZero(seconds)
+
 
     $('#days').innerHTML = days + '<span>Ngày</span>'
     $('#hours').innerHTML = hours + '<span>Giờ</span>'
@@ -66,7 +63,7 @@ function updateCountdown() {
     if (timeRemaining <= 0) {
         clearInterval(countdown)
 
-        x = setInterval(function () {
+        x = setInterval(function() {
             let w = (canvasC.width = window.innerWidth),
                 h = (canvasC.height = window.innerHeight),
                 ctx = canvasC.getContext('2d'),
@@ -494,7 +491,15 @@ function updateCountdown() {
             <path fill="#fefae9" d="M10 475.571h180v4H10z" />
         </svg>
     </div>`
-                $('.cake_and_velas').addEventListener('dblclick', QRcode, false)
+                let clickCount = 0
+                $('.cake_and_velas').addEventListener('click', () => {
+                    clickCount++
+                    if (clickCount === 6) { 
+                        QRcode()
+
+                        clickCount === 0
+                     }
+                }, false)
             }
 
             function QRcode() {
@@ -511,7 +516,18 @@ function updateCountdown() {
                     setTimeout(createCake(), 10000)
                     box.removeEventListener('click', openBox, false)
                     box.removeEventListener('click', createCake, false)
-                    box.removeEventListener('dblclick', QRcode, false)
+                    box.removeEventListener(
+                        'click',
+                        () => {
+                            clickCount++
+                            if (clickCount === 6) {
+                                QRcode()
+
+                                clickCount === 0
+                            }
+                        },
+                        false,
+                    )
                 }
                 stepClass(step)
 
@@ -519,6 +535,7 @@ function updateCountdown() {
                     box.removeEventListener('click', showfireworks, false)
                 }
                 if (step === 4) {
+                    // clearTimeout(createCake(), 1000)
                     return
                 }
                 setTimeout(openBox, stepMinutes[step - 1])
@@ -543,7 +560,7 @@ function updateCountdown() {
 }
 
 // Bắt đầu đồng hồ đếm ngược
-countdown = setInterval(updateCountdown, 1000)
+countdown = setTimeout(updateCountdown, 1000)
 
 // Xoá nội dung của countdown khi chạy xong
 function clearCountdownContent() {

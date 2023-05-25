@@ -41,11 +41,11 @@ body {
     color: #962fbf;
 }
 
+
 #timer {
     line-height: 1;
     font-size: 40px;
     text-align: center;
-    transform: translateY(50%);
     left: -50%;
 }
 
@@ -57,7 +57,7 @@ span {
     color: #000;
 }
 
-#timer div {
+#timer > div {
     display: inline-block;
     text-align: center;
 }
@@ -357,6 +357,17 @@ span {
     height: 80px;
 }
 
+
+@media (min-width: 1024px) {
+  #timer {
+    line-height: 1;
+    font-size: 40px;
+    text-align: center;
+    transform: translateY(50%);
+    left: -50%;
+}
+}
+
 /* Responsive styles for mobile devices */
 @media (max-width: 480px) {
     #days {
@@ -378,16 +389,22 @@ span {
 
     #timer {
         display: flex;
-        justify-content: center;
+        /* justify-content: space-around; */
         align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin-top: 20%;
         flex-direction: column;
     }
 
-    #timer div {
+    #timer > div {
         text-align: center;
         font-size: 110px;
         display: block;
         width: 1.4em;
+        padding: 0 0 40px 0;
     }
 
     span {
@@ -395,6 +412,5 @@ span {
         font-size: 30px;
         color: #000;
         position: relative;
-        top: -40px;
     }
 }
