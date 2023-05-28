@@ -17,7 +17,7 @@ body {
     height: 100%;
     font-family: 'Kanit', sans-serif;
     background: #fff;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 #days {
@@ -372,7 +372,7 @@ span {
 }
 
 /* Responsive styles for mobile devices */
-@media (max-width: 600px) {
+@media (max-width: 320px) {
     .cake_and_velas {
         position: absolute;
         bottom: 20%;
@@ -412,6 +412,214 @@ span {
     #timer > div {
         text-align: center;
         font-size: 110px;
+        display: block;
+        width: 1.4em;
+        padding: 0 0 40px 0;
+    }
+
+    span {
+        display: block;
+        font-size: 30px;
+        color: #000;
+        position: relative;
+    }
+}
+@media (max-width: 480px) {
+    .cake_and_velas {
+        position: absolute;
+        bottom: 20%;
+        left: 16px;
+        right: 0;
+        overflow: hidden;
+    }
+    #days {
+        font-size: 160px;
+        color: #00b159;
+    }
+    #hours {
+        font-size: 160px;
+        color: #009fbd;
+    }
+    #minutes {
+        font-size: 160px;
+        color: #f37735;
+    }
+    #seconds {
+        font-size: 160px;
+        color: #962fbf;
+    }
+
+    #timer {
+        display: flex;
+        /* justify-content: space-around; */
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin-top: 20%;
+        flex-direction: column;
+    }
+
+    #timer > div {
+        text-align: center;
+        font-size: 110px;
+        display: block;
+        width: 1.4em;
+        padding: 0 0 40px 0;
+    }
+
+    span {
+        display: block;
+        font-size: 30px;
+        color: #000;
+        position: relative;
+    }
+}
+@media (max-width: 600px) {
+    .cake_and_velas {
+        position: absolute;
+        bottom: 20%;
+        left: 16px;
+        right: 0;
+        overflow: hidden;
+    }
+    #days {
+        font-size: 160px;
+        color: #00b159;
+    }
+    #hours {
+        font-size: 160px;
+        color: #009fbd;
+    }
+    #minutes {
+        font-size: 160px;
+        color: #f37735;
+    }
+    #seconds {
+        font-size: 160px;
+        color: #962fbf;
+    }
+
+    #timer {
+        display: flex;
+        /* justify-content: space-around; */
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin-top: 20%;
+        flex-direction: column;
+    }
+
+    #timer > div {
+        text-align: center;
+        font-size: 80px;
+        display: block;
+        width: 1.4em;
+        padding: 0 0 40px 0;
+    }
+
+    span {
+        display: block;
+        font-size: 30px;
+        color: #000;
+        position: relative;
+    }
+}
+@media (max-width: 768px) {
+    .cake_and_velas {
+        position: absolute;
+        bottom: 20%;
+        left: 16px;
+        right: 0;
+        overflow: hidden;
+    }
+    #days {
+        font-size: 160px;
+        color: #00b159;
+    }
+    #hours {
+        font-size: 160px;
+        color: #009fbd;
+    }
+    #minutes {
+        font-size: 160px;
+        color: #f37735;
+    }
+    #seconds {
+        font-size: 160px;
+        color: #962fbf;
+    }
+
+    #timer {
+        display: flex;
+        /* justify-content: space-around; */
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin-top: 20%;
+        flex-direction: column;
+    }
+
+    #timer > div {
+        text-align: center;
+        font-size: 80px;
+        display: block;
+        width: 1.4em;
+        padding: 0 0 40px 0;
+    }
+
+    span {
+        display: block;
+        font-size: 30px;
+        color: #000;
+        position: relative;
+    }
+}
+@media (max-width: 800px) {
+    .cake_and_velas {
+        position: absolute;
+        bottom: 20%;
+        left: 16px;
+        right: 0;
+        overflow: hidden;
+    }
+    #days {
+        font-size: 160px;
+        color: #00b159;
+    }
+    #hours {
+        font-size: 160px;
+        color: #009fbd;
+    }
+    #minutes {
+        font-size: 160px;
+        color: #f37735;
+    }
+    #seconds {
+        font-size: 160px;
+        color: #962fbf;
+    }
+
+    #timer {
+        display: flex;
+        /* justify-content: space-around; */
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin-top: 20%;
+        flex-direction: column;
+    }
+
+    #timer > div {
+        text-align: center;
+        font-size: 80px;
         display: block;
         width: 1.4em;
         padding: 0 0 40px 0;
