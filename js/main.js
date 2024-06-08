@@ -1,7 +1,7 @@
 const $ = document.querySelector.bind(document)
 // Ngày muốn đếm ngược đến
 // const targetDate = new Date('2023-05-28T13:39:00Z').getTime() // 1/6
-const targetDate = new Date('2023-05-31T17:00:00Z').getTime() // 1/6
+const targetDate = new Date('2025-05-31T17:00:00Z').getTime() // 1/6
 
 const giftbox = $('#merrywrap')
 const canvasC = $('#canvas')
