@@ -1,7 +1,12 @@
 const $ = document.querySelector.bind(document)
 // Ngày muốn đếm ngược đến
-// const targetDate = new Date('2023-05-28T13:39:00Z').getTime() // 1/6
-const targetDate = new Date('2025-05-31T17:00:00Z').getTime() // 1/6
+const today = new Date();
+const currentYear = today.getFullYear();
+let birthday = new Date(currentYear, 5, 1);
+if (today > birthday) {
+    birthday = new Date(currentYear + 1, 5, 1);
+}
+const targetDate = birthday.getTime() // 1/6
 
 const giftbox = $('#merrywrap')
 const canvasC = $('#canvas')
@@ -39,7 +44,7 @@ function updateCountdown() {
     const currentDate = new Date().getTime()
 
     // Tính thời gian còn lại
-    const timeRemaining = targetDate - currentDate
+    const timeRemaining = targetDate - currentDate;
 
     // Tính giờ, phút, giây còn lại
     var days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24))
@@ -509,7 +514,7 @@ function updateCountdown() {
             }
 
             function QRcode() {
-                $('#qrcode').innerHTML = `<img class='qrcode' src='./qrcode.jpg' alt='qrcode'/>`
+                $('#qrcode').innerHTML = `<img class='qrcode' src='./man.png' alt='qrcode'/>`
             }
 
             function stepClass(step) {
@@ -570,6 +575,7 @@ countdown = setTimeout(updateCountdown, 1000)
 
 // Xoá nội dung của countdown khi chạy xong
 function clearCountdownContent() {
+    console.log('clearCountdownContent');
     $('#timer').style.display = 'none'
     $('#days').innerHTML = ''
     $('#hours').innerHTML = ''
@@ -578,4 +584,7 @@ function clearCountdownContent() {
 }
 
 // Gọi hàm clearCountdownContent sau khi countdown kết thúc
-setTimeout(clearCountdownContent, targetDate - Date.now())
+setTimeout(() => {
+    $(timer).style.display = 'none'
+    clearCountdownContent();
+}, targetDate - today.getTime())
