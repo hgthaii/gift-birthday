@@ -6,7 +6,7 @@ let birthday = new Date(currentYear, 5, 1);
 if (today > birthday) {
     birthday = new Date(currentYear + 1, 5, 1);
 }
-const targetDate = birthday.getTime() // 1/6
+const targetDate = today.getTime() // 1/6
 
 const giftbox = $('#merrywrap')
 const canvasC = $('#canvas')
